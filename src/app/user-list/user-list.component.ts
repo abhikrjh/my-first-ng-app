@@ -33,6 +33,7 @@ export class UserListComponent implements OnInit {
     this.httpClient.post(this.userService.getUrl(this.userService.endPointdeleteUser),id).subscribe((data: any) => {
       this.usersList = data;
     });
+    // work started.
   }
   
   modifyUser(userObj:any){

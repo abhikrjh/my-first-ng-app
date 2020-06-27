@@ -1,0 +1,38 @@
+<div>
+    <table class="userTable">
+        <tbody>
+            <tr style="background: green;">
+                <th>UserId</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Username</th>
+                <th>Age</th>
+                <th>Salary</th>
+                <th>Modify/Delete</th>
+            </tr>
+            <tr *ngFor="let users of this.usersList">
+                <th>{{users.userId}}</th>
+                <th>{{users.firstname}}</th>
+                <th>{{users.lastname}}</th>
+                <th>{{users.username}}</th>
+                <th>{{users.age}}</th>
+                <th>{{users.salary}}</th>
+                <th> 
+                    <button type="button" class="btn btn-primary" (click)="deleteUser(users.userId)">Delete</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <button type="button" class="btn btn-primary" (click)="modifyUser(users)">Modify</button>
+                </th>
+            </tr>
+            <tr>
+                <th colspan="7" style="align-items: center;">
+                    <!-- <button class="button" type="button" (click)="showAddUserPopUp()">Add User</button> -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                        Add User
+                    </button>
+                </th>
+            </tr>
+            
+        </tbody>
+    </table>
+</div>
+<app-add-user (addUserEvent)="addEvent_Handler($event)"></app-add-user>

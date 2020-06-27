@@ -1,0 +1,26 @@
+table, td, th {
+    border: 1px solid black;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+  }
+ 
+  th {
+    height: 50px;
+    text-align: center;
+  }
+
+  .button {
+    background-color:gray;
+    border: none;
+    padding: 15px 37px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }

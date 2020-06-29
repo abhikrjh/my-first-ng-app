@@ -1,7 +1,7 @@
 <div>
     <table class="userTable">
         <tbody>
-            <tr style="background: green;">
+            <tr style="background: #40E0D0;">
                 <th>UserId</th>
                 <th>Firstname</th>
                 <th>Lastname</th>
@@ -20,14 +20,17 @@
                 <th> 
                     <button type="button" class="btn btn-primary" (click)="deleteUser(users.userId)">Delete</button>
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <button type="button" class="btn btn-primary" (click)="modifyUser(users)">Modify</button>
+                    <!-- <button type="button" class="btn btn-primary" (click)="modifyUser(users)">Modify</button> -->
+                    <button type="button" (click)="setFormValue(false,users);" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                        Modify
+                    </button>
                 </th>
             </tr>
             
             <tr>
                 <th colspan="7" style="align-items: center;">
                     <!-- <button class="button" type="button" (click)="showAddUserPopUp()">Add User</button> -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                    <button type="button" (click)="setFormValue(true,null);" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
                         Add User
                     </button>
                 </th>
@@ -36,4 +39,4 @@
         </tbody>
     </table>
 </div>
-<app-add-user (addUserEvent)="addEvent_Handler($event)"></app-add-user>
+<app-add-user (addUserEvent)="addEvent_Handler($event)" (modifyUserEvent)="modifyEvent_Handler($event)" [userFlag]="userFlagValue" [addUserFormObj]="formObj" [addModifyFlag]="buttonName"></app-add-user>

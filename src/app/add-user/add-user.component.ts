@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
@@ -11,6 +11,10 @@ import { UserServiceService } from '../user-service.service';
 })
 export class AddUserComponent implements OnInit {
   adduserForm: any;
+  @Input() userFlag: any;
+  @Input() addUserFormObj :any;
+  @Input()  addModifyFlag : any;
+  @Output() modifyUserEvent = new EventEmitter();
   @Output() addUserEvent = new EventEmitter();
   constructor(private httpClient: HttpClient, private route: ActivatedRoute,
     private router: Router, private userService: UserServiceService) { }
@@ -36,22 +40,22 @@ export class AddUserComponent implements OnInit {
 
 
   addUser() {
-    const reqObj = {
-      firstname: this.adduserForm.value.firstname,
-      lastname: this.adduserForm.value.lastname,
-      username: this.adduserForm.value.username,
-      age: this.adduserForm.value.age,
-      salary: this.adduserForm.value.salary,
+    if (this.userFlag == 1) { // for add user
+      const reqObj = {
+        firstname: this.adduserForm.value.firstname,
+        lastname: this.adduserForm.value.lastname,
+        username: this.adduserForm.value.username,
+        age: this.adduserForm.value.age,
+        salary: this.adduserForm.value.salary,
+      }
+      this.httpClient.post(this.userService.getUrl(this.userService.endPointAddUser), reqObj).subscribe((data: any) => {
+        // Inform Parent component that user has been added, Parent Component upon recieving this event,  will again fetch the fresh list from data base.
+        this.addUserEvent.emit(true);
+      });
+    } else if (this.userFlag == 0) { // for modify user
+      this.modifyUserEvent.emit(this.addUserFormObj);
     }
 
-    this.httpClient.post(this.userService.getUrl(this.userService.endPointAddUser), reqObj).subscribe((data: any) => {
-      //console.log(data);
-
-      // Inform Parent component that user has been added, Parent Component upon recieving this event, 
-      // will again fetch the fresh list 
-      // from data base.
-      this.addUserEvent.emit(true);
-    });
   }
 
 }

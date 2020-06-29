@@ -24,3 +24,9 @@ table, td, th {
     margin: 4px 2px;
     cursor: pointer;
   }
+
+
+  .btn-primary {
+    cursor:pointer;
+    background-color: grey;
+  }

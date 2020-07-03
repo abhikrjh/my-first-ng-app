@@ -6,9 +6,9 @@ import { Injectable } from '@angular/core';
 export class UserServiceService {
 
   constructor() { }
-  endPointUserList :string = 'userList';
-  endPointAddUser : string = 'addUser';
-  endPointdeleteUser : string = 'deleteUser';
+  endPointEmployeeList :string = 'employeeList';
+  endPointAddEmployee : string = 'addEmployee';
+  endPointdeleteEmployee : string = 'deleteEmployee';
   Add : string = 'Add';
   Modify: string = ' Modify'
 

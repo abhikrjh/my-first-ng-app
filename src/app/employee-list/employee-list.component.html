@@ -1,0 +1,40 @@
+<div>
+    <table class="employeeTable">
+        <tbody>
+            <tr style="background: #40E0D0;">
+                <th>EmpId</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Age</th>
+                <th>Salary</th>
+                <th>Modify/Delete</th>
+            </tr>
+            <tr *ngFor="let employee of this.employeeList">
+                <th>{{employee.id}}</th>
+                <th>{{employee.firstname}}</th>
+                <th>{{employee.lastname}}</th>
+                <th>{{employee.age}}</th>
+                <th>{{employee.salary}}</th>
+                <th> 
+                    <button type="button" class="btn btn-primary" (click)="deleteUser(employee.id)">Delete</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <!-- <button type="button" class="btn btn-primary" (click)="modifyUser(users)">Modify</button> -->
+                    <button type="button" (click)="setFormValue(false,employee);" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                        Modify
+                    </button>
+                </th>
+            </tr>
+            
+            <tr>
+                <th colspan="6" style="align-items: center;">
+                    <!-- <button class="button" type="button" (click)="showAddUserPopUp()">Add User</button> -->
+                    <button type="button" (click)="setFormValue(true,null);" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                        Add employee
+                    </button>
+                </th>
+            </tr>
+            
+        </tbody>
+    </table>
+</div>
+<app-add-employee (addEmployeeEvent)="addEvent_Handler($event)" (modifyEmployeeEvent)="modifyEvent_Handler($event)" [employeeFlag]="employeeFlagValue" [addEmployeeFormObj]="formObj" [addModifyFlag]="buttonName"></app-add-employee>

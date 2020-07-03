@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms'
 import { HttpClient } from '@angular/common/http';
-import { Router, ActivatedRoute,ParamMap} from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { UserServiceService } from '../user-service.service';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-login-form',
@@ -10,12 +13,11 @@ import { Router, ActivatedRoute,ParamMap} from '@angular/router';
 })
 export class LoginFormComponent implements OnInit {
 
-  //constructor() { };
   constructor(private httpClient: HttpClient, private route: ActivatedRoute,
-    private router: Router) {
+    private router: Router, private userService: UserServiceService,private authService : AuthenticationService) {
   };
   ngOnInit(): void {
-    
+
   }
 
   loginForm = new FormGroup({
@@ -23,21 +25,45 @@ export class LoginFormComponent implements OnInit {
     password: new FormControl(''),
   });
 
+  employeeData: any;
+  validLogin: boolean = false;
   json;
-  url = "http://localhost:8080/users";
   userNameAndPass;
   onSubmit() {
+
+    // const reqObj = {
+    //   username: this.loginForm.value.username,
+    //   password: this.loginForm.value.password
+    // }
+
+    // this.httpClient.post(this.url, reqObj).subscribe((data: any) => {
+    //   //console.log(data);
+    //   this.json = data.json;
+    //   this.router.navigate(['/userlist']);
+    // });
 
     const reqObj = {
       username: this.loginForm.value.username,
       password: this.loginForm.value.password
     }
 
-    this.httpClient.post(this.url, reqObj).subscribe((data: any) => {
+    this.authService.authenticate(reqObj).subscribe(res=> {
+      this.employeeData = res;
+      console.log(this.employeeData.jwt);
+      this.validLogin =true;
+      this.showEmployeeList();
+    },error =>{
+       this.validLogin =false;
+    });
+
+  }
+  showEmployeeList(){
+    this.httpClient.get(this.userService.getUrl(this.userService.endPointEmployeeList)).subscribe((data: any) => {
       //console.log(data);
       this.json = data.json;
-      this.router.navigate(['/userlist']);
+      this.router.navigate(['/employeelist']);
     });
   }
+
 
 }

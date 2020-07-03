@@ -5,14 +5,15 @@ import { HeaderComponent } from './header/header.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { FooterComponent } from './footer/footer.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { UserDetailComponent } from './user-detail/user-detail.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { UserListComponent } from './user-list/user-list.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { AddUserComponent } from './add-user/add-user.component';
 import { CommonModule } from '@angular/common';
 import {UserServiceService} from './user-service.service';
+import { BasicAuthHttpInterceptorService } from './basic-auth-http-interceptor.service';
+import { EmployeeListComponent } from './employee-list/employee-list.component';
+import { AddEmployeeComponent } from './add-employee/add-employee.component';
+
 
 
 @NgModule({
@@ -21,10 +22,9 @@ import {UserServiceService} from './user-service.service';
     HeaderComponent,
     LoginFormComponent,
     FooterComponent,
-    UserDetailComponent,
-    UserListComponent,
+    EmployeeListComponent,
     PageNotFoundComponent,
-    AddUserComponent,
+    AddEmployeeComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +34,12 @@ import {UserServiceService} from './user-service.service';
     AppRoutingModule,
     
   ],
-  providers: [UserServiceService],
+  providers: [UserServiceService, 
+    {
+    provide:HTTP_INTERCEPTORS, 
+    useClass: BasicAuthHttpInterceptorService, 
+    multi:true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

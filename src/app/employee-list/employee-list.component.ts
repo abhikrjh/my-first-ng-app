@@ -1,42 +1,41 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { AddUserComponent } from '../add-user/add-user.component';
+import { AddEmployeeComponent } from '../add-employee/add-employee.component';
 import { UserServiceService } from '../user-service.service';
 
 @Component({
-  selector: 'app-user-list',
-  templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.css']
+  selector: 'app-employee-list',
+  templateUrl: './employee-list.component.html',
+  styleUrls: ['./employee-list.component.css']
 })
-export class UserListComponent implements OnInit {
+export class EmployeeListComponent implements OnInit {
 
   constructor(private httpClient: HttpClient, private route: ActivatedRoute,
     private router: Router, private userService: UserServiceService) { }
-  usersList: any;
-  userFlagValue: any;
+  employeeList: any;
+  employeeFlagValue: any;
   public buttonName: any = 'add';
   formObj = {
-    userId: 0,
+    id: 0,
     firstname: "",
     lastname: "",
-    username: "",
     age: 0,
     salary: 0
   };
 
 
   ngOnInit(): void {
-    this.httpClient.get(this.userService.getUrl(this.userService.endPointUserList)).subscribe((data: any) => {
-      this.usersList = data;
+    this.httpClient.get(this.userService.getUrl(this.userService.endPointEmployeeList)).subscribe((data: any) => {
+      this.employeeList = data;
     });
 
   }
 
   addEvent_Handler(event: any) {
     if (event) {
-      this.httpClient.get(this.userService.getUrl(this.userService.endPointUserList)).subscribe((data: any) => {
-        this.usersList = data;
+      this.httpClient.get(this.userService.getUrl(this.userService.endPointEmployeeList)).subscribe((data: any) => {
+        this.employeeList = data;
       });
     }
   }
@@ -44,35 +43,33 @@ export class UserListComponent implements OnInit {
   modifyEvent_Handler(event: any) {
     // updating user object value of usersList having same userId as addUserFormObj userId
     if (event) {
-      let user: any;
-      user = this.usersList.find(user => user.userId == event.userId);
+      let employee: any;
+      employee = this.employeeList.find(employee => employee.id == event.id);
 
-      user.firstname = event.firstname;
-      user.lastname = event.lastname;
-      user.username = event.username;
-      user.age = event.age;
-      user.salary = event.salary;
+      employee.firstname = event.firstname;
+      employee.lastname = event.lastname;
+      employee.username = event.username;
+      employee.age = event.age;
+      employee.salary = event.salary;
     }
   }
 
   setFormValue(flag: any, obj: any) {
     this.toggleButton(flag);
-    if (flag) { // Add user
-      this.formObj.userId = -1,
+    if (flag) { // Add employee
+      this.formObj.id = -1,
         this.formObj.firstname = '',
         this.formObj.lastname = '',
-        this.formObj.username = '',
         this.formObj.age = null,
         this.formObj.salary = null
-       this.userFlagValue = 1;
-    } else { // Modify User
-      this.formObj.userId = obj.userId;
+       this.employeeFlagValue = 1;
+    } else { // Modify employee
+      this.formObj.id = obj.id;
       this.formObj.firstname = obj.firstname,
         this.formObj.lastname = obj.lastname,
-        this.formObj.username = obj.username,
         this.formObj.age = obj.age,
         this.formObj.salary = obj.salary
-      this.userFlagValue = 0;
+      this.employeeFlagValue = 0;
     }
   }
 
@@ -86,8 +83,8 @@ export class UserListComponent implements OnInit {
   }
 
   deleteUser(id: any) {
-    this.httpClient.post(this.userService.getUrl(this.userService.endPointdeleteUser), id).subscribe((data: any) => {
-      this.usersList = data;
+    this.httpClient.post(this.userService.getUrl(this.userService.endPointdeleteEmployee), id).subscribe((data: any) => {
+      this.employeeList = data;
     });
   }
 }

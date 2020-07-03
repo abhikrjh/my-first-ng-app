@@ -1,19 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router'; // CLI imports router
 import { LoginFormComponent } from './login-form/login-form.component';
-import { UserDetailComponent } from './user-detail/user-detail.component';
-import { UserListComponent } from './user-list/user-list.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { AddUserComponent } from './add-user/add-user.component';
+import { EmployeeListComponent } from './employee-list/employee-list.component';
+import { AddEmployeeComponent } from './add-employee/add-employee.component';
 
 
 const routes: Routes = [
     { path: 'login', component: LoginFormComponent },
-    {path: 'userlist', component: UserListComponent},
-    { path: 'userdetail', component: UserDetailComponent },
+    {path: 'employeelist', component: EmployeeListComponent},
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent },
-    {path:'addUser' , component: AddUserComponent},
+    {path:'addEmployee' , component: AddEmployeeComponent},
 ]; // sets up routes constant where you define your routes
 
 // configures NgModule imports and exports

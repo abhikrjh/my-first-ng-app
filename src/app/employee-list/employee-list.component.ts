@@ -29,7 +29,7 @@ export class EmployeeListComponent implements OnInit {
     this.httpClient.get(this.userService.getUrl(this.userService.endPointEmployeeList)).subscribe((data: any) => {
       this.employeeList = data;
     });
-
+// needs to be in Service class, no http get call in componnet.ts 
   }
 
   addEvent_Handler(event: any) {

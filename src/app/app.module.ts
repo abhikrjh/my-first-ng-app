@@ -13,7 +13,9 @@ import {UserServiceService} from './user-service.service';
 import { BasicAuthHttpInterceptorService } from './basic-auth-http-interceptor.service';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
-
+import { AuthGuard } from './auth.guard';
+import { LoginService } from './login.service';
+import { Routes, RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -32,9 +34,8 @@ import { AddEmployeeComponent } from './add-employee/add-employee.component';
     HttpClientModule, 
     CommonModule,
     AppRoutingModule,
-    
   ],
-  providers: [UserServiceService, 
+  providers: [UserServiceService, LoginService,AuthGuard,
     {
     provide:HTTP_INTERCEPTORS, 
     useClass: BasicAuthHttpInterceptorService, 

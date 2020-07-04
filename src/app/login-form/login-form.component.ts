@@ -5,6 +5,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { UserServiceService } from '../user-service.service';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { AuthenticationService } from '../authentication.service';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-login-form',
@@ -14,7 +15,8 @@ import { AuthenticationService } from '../authentication.service';
 export class LoginFormComponent implements OnInit {
 
   constructor(private httpClient: HttpClient, private route: ActivatedRoute,
-    private router: Router, private userService: UserServiceService,private authService : AuthenticationService) {
+    private router: Router, private userService: UserServiceService,private authService : AuthenticationService,
+    private loginService : LoginService) {
   };
   ngOnInit(): void {
 
@@ -51,6 +53,7 @@ export class LoginFormComponent implements OnInit {
       this.employeeData = res;
       console.log(this.employeeData.jwt);
       this.validLogin =true;
+      this.loginService.setUserLogedin();
       this.showEmployeeList();
     },error =>{
        this.validLogin =false;

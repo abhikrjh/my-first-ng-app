@@ -4,11 +4,12 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
+import { AuthGuard } from './auth.guard';
 
 
 const routes: Routes = [
     { path: 'login', component: LoginFormComponent },
-    {path: 'employeelist', component: EmployeeListComponent},
+    {path: 'employeelist', component: EmployeeListComponent, canActivate: [AuthGuard]},
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent },
     {path:'addEmployee' , component: AddEmployeeComponent},

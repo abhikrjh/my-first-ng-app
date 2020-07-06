@@ -16,6 +16,8 @@ import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import { AuthGuard } from './auth.guard';
 import { LoginService } from './login.service';
 import { Routes, RouterModule } from '@angular/router';
+import { UserRegisterComponent } from './user-register/user-register.component';
+
 
 
 @NgModule({
@@ -27,6 +29,7 @@ import { Routes, RouterModule } from '@angular/router';
     EmployeeListComponent,
     PageNotFoundComponent,
     AddEmployeeComponent,
+    UserRegisterComponent,
   ],
   imports: [
     BrowserModule,

@@ -32,7 +32,8 @@ export class LoginFormComponent implements OnInit {
   json;
   userNameAndPass;
   onSubmit() {
-
+      
+      
     // const reqObj = {
     //   username: this.loginForm.value.username,
     //   password: this.loginForm.value.password
@@ -67,6 +68,9 @@ export class LoginFormComponent implements OnInit {
       this.router.navigate(['/employeelist']);
     });
   }
-
+  
+  userRegister(){
+    this.router.navigate(['/registerUser']);
+  }
 
 }

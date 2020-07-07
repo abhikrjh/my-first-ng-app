@@ -6,6 +6,7 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import { AuthGuard } from './auth.guard';
 import { UserRegisterComponent } from './user-register/user-register.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
     { path: 'employeelist', component: EmployeeListComponent, canActivate: [AuthGuard] },
     { path: 'addEmployee', component: AddEmployeeComponent },
     { path: 'registerUser', component: UserRegisterComponent },
+    { path: 'userDetail', component:UserDetailComponent},
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent }
 ]; // sets up routes constant where you define your routes

@@ -17,6 +17,7 @@ import { AuthGuard } from './auth.guard';
 import { LoginService } from './login.service';
 import { Routes, RouterModule } from '@angular/router';
 import { UserRegisterComponent } from './user-register/user-register.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 
 
 
@@ -30,6 +31,7 @@ import { UserRegisterComponent } from './user-register/user-register.component';
     PageNotFoundComponent,
     AddEmployeeComponent,
     UserRegisterComponent,
+    UserDetailComponent,
   ],
   imports: [
     BrowserModule,

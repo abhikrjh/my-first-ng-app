@@ -11,6 +11,7 @@ export class UserServiceService {
   endPointAddEmployee: string = 'addEmployee';
   endPointdeleteEmployee: string = 'deleteEmployee';
   endPointRegisterUser: string = 'registerUser';
+  endPointUsersList : string ='usersList';
   Add: string = 'Add';
   Modify: string = ' Modify'
 

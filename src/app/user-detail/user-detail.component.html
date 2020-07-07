@@ -1,0 +1,35 @@
+<div *ngIf="this.usersList">
+    <table class="employeeTable">
+        <tbody>
+            <tr style="background:lightgreen;">
+                <th>id</th>
+                <th>username</th>
+                <th>password</th>
+                <th>role</th>
+            </tr>
+                    
+            <tr *ngFor="let user of this.usersList">
+                <th>{{user.id}}</th>
+                <th>{{user.username}}</th>
+                <th>{{user.password}}</th>
+                <th>{{user.role}}</th>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div *ngIf="!this.usersList">
+    <table class="employeeTable">
+        <tbody>
+            <tr style="background:lightgreen;">
+                <th>id</th>
+                <th>username</th>
+                <th>password</th>
+                <th>role</th>
+            </tr>                    
+            <tr>
+                <th style="padding: 100px; color: red; text-decoration: solid;" colspan="4">You can not acess user list</th>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

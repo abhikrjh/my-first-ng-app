@@ -26,10 +26,15 @@
             </tr>
             
             <tr>
-                <th colspan="6" style="align-items: center;">
+                <th colspan="5" style="align-items: center;">
                     <!-- <button class="button" type="button" (click)="showAddUserPopUp()">Add User</button> -->
                     <button type="button" (click)="setFormValue(true,null);" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
                         Add employee
+                    </button>
+                </th>
+                <th  style="align-items: center;">
+                    <button type="button" class="btn btn-primary" style="color: green; background-color: #40E0D0;" (click)="showUserList()">
+                        Users List
                     </button>
                 </th>
             </tr>

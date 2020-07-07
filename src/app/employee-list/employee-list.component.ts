@@ -87,4 +87,8 @@ export class EmployeeListComponent implements OnInit {
       this.employeeList = data;
     });
   }
+
+  showUserList(){
+    this.router.navigate(['/userDetail']);
+  }
 }
